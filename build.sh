@@ -23,6 +23,8 @@ find . -name "*.deb" -exec cp {} /build/out/ \;
 rm -rf /build/document-server-package
 
 cd /build/document-builder-package
+sed -i -e '/777/ d' deb/template/postinst.m4
+sed -i -e '/777/ d' rpm/package.spec
 make rpm deb
 mkdir -p /build/out
 find . -name "*.rpm" -exec cp {} /build/out/ \;
